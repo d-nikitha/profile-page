@@ -1,0 +1,115 @@
+.popupBackground {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
+}
+
+.popupContainer {
+  width: 900px;
+  height: 605px;
+  border-radius: 20px;
+  background-color: white;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  display: flex;
+  flex-direction: column;
+  padding: 25px;
+}
+
+.titleCloseBtn {
+  display: flex;
+  justify-content: flex-end;
+  background-color: transparent;
+  border: none;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.progressText {
+  font-family: "Gilroy-Bold";
+  font-size: 17px;
+  line-height: 141.3%;
+  text-transform: capitalize;
+  color: #86848b;
+}
+
+span {
+  margin-left: 40px;
+  margin-right: 45px;
+}
+
+.basic {
+  color: #000;
+}
+
+.emojiContainer {
+  margin-top: 60px;
+  text-align: center;
+  z-index: 2;
+}
+
+.emojiValue {
+  height: 162px;
+  width: 162px;
+}
+
+.background {
+  width: 90vh;
+  position: absolute;
+  z-index: 0;
+}
+
+.text {
+  margin-top: 10px;
+  font-family: "Gilroy-Bold";
+  font-size: 34px;
+  line-height: 103.8%;
+  text-align: center;
+  color: #472e8d;
+  z-index: 0;
+}
+
+.coinText {
+  margin-left: 30px;
+  margin-top: 18px;
+  font-family: "Gilroy-Bold";
+  font-size: 22px;
+  line-height: 103.8%;
+  color: #472e8d;
+  text-align: center;
+  z-index: 0;
+  background: url(../../Images/dripplogo.svg);
+  background-repeat: no-repeat;
+  background-position: 38%;
+}
+
+.claimBtn {
+  margin-left: 15px;
+  margin-top: 40px;
+  background: #472e8d;
+  border: 0.3px solid #21134a;
+  border-radius: 10px;
+  height: 52px;
+  width: 175px;
+  z-index: 0;
+  text-align: center;
+  align-self: center;
+  border: none;
+  font-family: "Gilroy-SemiBold";
+  font-size: 16px;
+  line-height: 19px;
+  text-align: center;
+  color: #ffffff;
+}
+
+.showText {
+  margin-top: 77px;
+  margin-left: 14px;
+  font-family: "Gilroy-SemiBold";
+  font-size: 18px;
+  line-height: 19px;
+  text-align: center;
+  color: #6257e4;
+}

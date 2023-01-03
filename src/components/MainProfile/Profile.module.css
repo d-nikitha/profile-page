@@ -1,0 +1,88 @@
+.container {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+  margin: auto;
+  padding: 0 20px;
+}
+
+.containerValue {
+  margin-top: 80px;
+  margin-left: 166px;
+}
+
+.imageValue {
+  margin-bottom: 10px;
+  margin-left: -5.5rem;
+}
+
+.name {
+    margin-top: 20px;
+  font-family: "Gilroy-SemiBold";
+  font-size: 26px;
+  line-height: 30px;
+  color: #000000;
+}
+
+.download{
+    margin-top: -100px;
+    margin-left: 48rem;
+}
+
+
+.title {
+  font-family: "Gilroy-SemiBold";
+  font-size: 18px;
+  line-height: 21px;
+  color: rgba(50, 31, 103, 0.72);
+}
+
+.description {
+  margin-top: 7px;
+  font-family: "Gilroy-SemiBold";
+  font-size: 18px;
+  line-height: 141.3%;
+  color: #2f2c2c;
+  width: 450px;
+}
+
+.skillBoard {
+  margin-top: 55px;
+  margin-left: 100px;
+  background: #ffffff;
+  border-radius: 12px;
+  height: 555px;
+  /* width: 560px; */
+  width: 30%;
+}
+
+.editImage {
+  margin-top: 18px;
+  margin-left: 31rem;
+}
+
+.editlogoImage {
+  cursor: pointer;
+  margin-left: -2rem;
+  margin-bottom: 12px;
+}
+
+.textSkills {
+  margin-top: 400px;
+  margin-left: 37px;
+}
+
+.additionalText {
+  font-family: "Gilroy-SemiBold";
+  font-size: 22px;
+  line-height: 141.3%;
+  color: #472e8d;
+}
+
+.additionaldesc {
+  font-family: "Gilroy-SemiBold";
+  font-size: 16px;
+  line-height: 19px;
+  color: #000000;
+}
