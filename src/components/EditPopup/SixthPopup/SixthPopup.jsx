@@ -1,17 +1,18 @@
 import React, { useState } from "react";
 import { Formik, Form, useField } from "formik";
-//  import * as Yup from "yup";
 import ProgressBar from "../../ProgressBar/ProgressBar";
 import GoBackLogo from "../../Images/GoBackLogo.svg";
 import cls from "../SixthPopup/SixthPopup.module.css";
 
+
+//custom formik button 
 const MyButtonInput = ({ label, ...props }) => {
-    const [field, meta] = useField(props);
+  const [field, meta] = useField(props);
 
     return (
       <>
         <label htmlFor={props.id || props.name}>{label}</label>
-        <button {...field} {...props}>Add Skill </button>
+        <button {...field} {...props} type='button'>Add Skill </button>
         <img src={props.src} alt={props.alt} className={cls.logoValue} />
         {meta.touched && meta.error ? (
           <div className={cls.errorText}>{meta.error}</div>
@@ -21,19 +22,23 @@ const MyButtonInput = ({ label, ...props }) => {
 };
 
 function SixthPopup({ updatePage }) {
+
+ //on cancel of x it will redirect to zero/starting page
   const cancelHandler = () => {
     updatePage(0);
   };
 
+  //to move next page/popup
   const handleClick = () => {
     updatePage(7);
   };
 
+  //to go back or jump into previous page
   const goBackHandler = () => {
     updatePage(5);
   };
 
-  //to add skills from userend
+  //to add skills from user 
 
   const inputArr = [
     {
@@ -70,30 +75,13 @@ function SixthPopup({ updatePage }) {
   };
 
   return (
-    <Formik
-
-      //  initialValues={{
-      //   skill: "",
-      //  }}
-
-      //  validationSchema={Yup.object({
-      //   skill: Yup.string().required("Add your skills!"),
-      //  })}
-
-       onSubmit={(values, { setSubmitting }) => {
-        setTimeout(() => {
-          alert(JSON.stringify(values, null, 2));
-          setSubmitting(false);
-          handleClick();
-        }, 400);
-       }}
-
-    >
+    <Formik>
       <div className={cls.popupBackground}>
         <div className={cls.popupContainer}>
           <button className={cls.titleCloseBtn} onClick={cancelHandler}>
             x
           </button>
+          {/* Using the ProgressBar component to update progress of each popup */}
 
           <ProgressBar bgcolor={"#6257E4"} progress="72" />
 
@@ -119,11 +107,10 @@ function SixthPopup({ updatePage }) {
                 <MyButtonInput
                   name="skill"
                   className={cls.skillBtn}
-                  onClick={addInput}
-                >
-                  Add Skill
+                  onClick={addInput}>Add Skill
                 </MyButtonInput>
-
+ 
+                
                 {arr.map((item, i) => {
                   return (
                     <input
@@ -145,7 +132,6 @@ function SixthPopup({ updatePage }) {
               <button onClick={goBackHandler} className={cls.goBackBtn}>
                 <img src={GoBackLogo} alt={"GoBackLogo"} /> Go Back
               </button>
-
               <button
                 className={cls.saveBtn}
                 type="submit"

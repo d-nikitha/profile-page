@@ -54,30 +54,28 @@ span {
 
 .uploadPhoto {
   margin-top: 55px;
-font-family: 'Gilroy-SemiBold';
-font-size: 24px;
-line-height: 103.8%;
-color: #000000;
+  font-family: "Gilroy-SemiBold";
+  font-size: 24px;
+  line-height: 103.8%;
+  color: #000000;
 }
 
 .uploadPhotoAdd {
-  margin-top: 12px; 
-  font-family: 'Gilroy-Medium';
-font-size: 18px;
-line-height: 122.51%;
-text-align: center;
-color: #949494;
+  margin-top: 12px;
+  font-family: "Gilroy-Medium";
+  font-size: 18px;
+  line-height: 122.51%;
+  text-align: center;
+  color: #949494;
 }
 
-
-.body{
-    margin-top: 55px;
+.body {
+  margin-top: 55px;
   display: flex;
   justify-content: left;
-  /* align-items: left; */
 }
 
-.image{
+.image {
   margin-top: 10px;
   color: #000;
 }
@@ -137,6 +135,8 @@ color: #949494;
   height: 43px;
   width: 160px;
   border: none;
+  margin-top: 30px;
+  margin-left: 30rem;
 }
 
 .captureBtn {
@@ -149,4 +149,122 @@ color: #949494;
   width: 153px;
   height: 43px;
   color: #6257e4;
+  margin-top: 30px;
+  margin-left: 30rem;
 }
+
+.firstImg {
+  height: 110px;
+  width: 110px;
+  border-radius: 15px;
+  margin-left: 20rem;
+}
+
+.secondImg {
+  height: 85px;
+  width: 85px;
+  border-radius: 15px;
+  margin-left: 15px;
+}
+
+.thirdImg {
+  height: 60px;
+  width: 60px;
+  border-radius: 28px;
+  margin-left: 14px;
+}
+
+.oneImg {
+  height: 110px;
+  width: 110px;
+  border-radius: 15px;
+  background-color: #d9d9d9;
+  margin-left: 20rem;
+}
+
+.twoImg {
+  height: 85px;
+  width: 85px;
+  border-radius: 15px;
+  margin-left: 15px;
+  background-color: #d9d9d9;
+}
+
+.threeImg {
+  height: 60px;
+  width: 60px;
+  border-radius: 28px;
+  margin-left: 14px;
+  background-color: #d9d9d9;
+}
+
+.removeBtn {
+  position: relative;
+  bottom: 4.4vh;
+  height: 43px;
+  width: 150px;
+  padding: 0.7em;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  margin-left: 18rem;
+  background: #6257e4;
+  border: 0.3px solid #21134a;
+  border-radius: 10px;
+  font-family: "Gilroy-Medium";
+  font-weight: 500;
+  font-size: 17px;
+  line-height: 19px;
+  text-align: center;
+  color: #ffffff;
+  border: none;
+}
+
+.uploadBtn {
+  position: relative;
+  bottom: 3.2vh;  
+  padding: 0.7em;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  margin-left: 18rem;
+  background: #6257e4;
+  border: 0.3px solid #21134a;
+  border-radius: 10px;
+  font-family: "Gilroy-Medium";
+  font-size: 16px;
+  line-height: 19px;
+  text-align: center;
+  color: #ffffff;
+  border: none;
+}
+
+.oneImgSelect {
+  height: 110px;
+  width: 110px;
+  border-radius: 15px;
+  background-color: #d9d9d9;
+  margin-left: 20rem;
+  position: absolute;
+  top: 40.8vh; 
+}
+
+.twoImgSelect {
+  height: 85px;
+  width: 85px;
+  border-radius: 15px;
+  margin-left: 15px;
+  background-color: #d9d9d9;
+  position: absolute;
+  top: 45vh;
+  margin-left: 27.8rem;
+}
+
+.threeImgSelect {
+  height: 60px;
+  width: 60px;
+  border-radius: 28px;
+  margin-left: 14px;
+  background-color: #d9d9d9;
+  position: absolute;
+  top: 49vh;
+  margin-left: 34rem;
+} 

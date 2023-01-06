@@ -6,6 +6,7 @@ import GoBackLogo from "../../Images/GoBackLogo.svg";
 import { Form, Formik, useField, Field } from "formik";
 import * as Yup from "yup";
 
+// custom formik input to get validate by yup validation error or touched inputs.
 const MyTextInput = ({ label, ...props }) => {
   const [field, meta] = useField(props);
 
@@ -21,23 +22,28 @@ const MyTextInput = ({ label, ...props }) => {
 };
 
 const Popup = ({ updatePage }) => {
+
   const [file, setSelectedFile] = useState({
     file: undefined,
     previewURI: undefined,
   });
 
+  //to move next page/popup
   const handleClick = () => {
     updatePage(2);
   };
 
+ //on cancel of x it will redirect to zero/starting page
   const cancelHandler = () => {
     updatePage(0);
   };
 
+  //to go back or jump into previous page
   const goBackHandler = () => {
     updatePage(0);
   };
 
+  //mapping
   const page = [
     {
       name: "firstname",
@@ -69,6 +75,8 @@ const Popup = ({ updatePage }) => {
         contact: "",
         myfile: "",
       }}
+
+      //validations of all inputs 
       validationSchema={Yup.object({
         firstname: Yup.string()
           .min(3, "Too Short!")
@@ -87,8 +95,8 @@ const Popup = ({ updatePage }) => {
           )
           .required("*Contact number is must."),
         myfile: Yup.mixed()
-          .test("fileSize", "File size too large, max file is 32mb", (file) =>
-            file ? file.size <= 32000000 : true
+          .test("fileSize", "File size too large, max file is 3.2mb", (file) =>
+            file ? file.size <= 3355433 : true
           )
           .test("fileType", "Incorrect file type", (file) =>
             file ? ["application/pdf"].includes(file.type) : true
@@ -99,7 +107,7 @@ const Popup = ({ updatePage }) => {
         setTimeout(() => {
           alert(JSON.stringify(values, null, 2));
           setSubmitting(false);
-          handleClick();
+          handleClick(); //after clearance of all errors form will get submit/next page...
         }, 400);
       }}
     >
@@ -109,6 +117,7 @@ const Popup = ({ updatePage }) => {
             x
           </button>
 
+          {/* Using the ProgressBar component to update progress of each popup */}
           <ProgressBar bgcolor={"#6257E4"} progress="10" />
 
           <div className={cls.progressText}>
@@ -128,6 +137,7 @@ const Popup = ({ updatePage }) => {
               </div>
             </div>
 
+            {/* mapping  */}
             <div className={cls.body}>
               {page.map((data) => (
                 <div>
@@ -149,9 +159,10 @@ const Popup = ({ updatePage }) => {
               />
               <div className={cls.uploadResumeText}>Upload Resume</div>
               <div className={cls.pdfFileValue}>
-                PDF, Max file size is 32 MB
+                PDF, Max file size is 3.2 MB
               </div>
 
+              {/* condition of resume pdf type */}
               <Field name="myfile">
                 {({ form, ...rest }) => {
                   return (
@@ -162,7 +173,6 @@ const Popup = ({ updatePage }) => {
                         onChange={({ currentTarget }) => {
                           const file = currentTarget.files[0];
                           const reader = new FileReader();
-
                           if (file) {
                             reader.onloadend = () => {
                               setSelectedFile({
@@ -174,13 +184,15 @@ const Popup = ({ updatePage }) => {
                             form.setFieldValue("myfile", file);
                           }
                         }}
+                        id="upload-resume"
                         type="file"
                         accept="application/pdf, .pdf"
                         className={cls.chooseRes}
                       />
+
                       {form.errors.myfile && form.touched.myfile ? (
                         <div className={cls.errorText}>
-                          {JSON.stringify(form.errors.myfile, file)} 
+                          {JSON.stringify(form.errors.myfile, file)}
                         </div>
                       ) : null}
                     </>
@@ -189,14 +201,13 @@ const Popup = ({ updatePage }) => {
               </Field>
             </div>
 
+            {/* The bottom design of popup */}
             <div className={cls.breakline}></div>
             <div className={cls.footer}>
               <button className={cls.goBackBtn} onClick={goBackHandler}>
                 <img src={GoBackLogo} alt={"GoBackLogo"} /> Go Back
               </button>
-
               <button className={cls.showMoreBtn}>Show me jobs</button>
-
               <button className={cls.saveBtn} type="submit">
                 Save & Next
               </button>

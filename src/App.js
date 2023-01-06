@@ -15,6 +15,7 @@ function App() {
 
   return (
     <>
+      
       {page === 0 ? <Profile updatePage={setPage} /> : null}
       {page === 1 ? <Popup updatePage={setPage} /> : null}
       {page === 2 ? <SecondPopUp updatePage={setPage} /> : null}
@@ -23,9 +24,8 @@ function App() {
       {page === 5 ? <FifthPopup updatePage={setPage} /> : null}
       {page === 6 ? <SixthPopup updatePage={setPage} /> : null} 
       {page === 7 ? <SeventhPopup updatePage={setPage} /> : null}
-      {page === 8 ? <EighthPopup updatePage={setPage} /> : null}   
+      {page === 8 ? <EighthPopup updatePage={setPage} /> : null}      
 
-      {/* <ThirdPopup /> */}
       {/* <SecondPopUp /> */}
       {/* <FourthPopup/>  */}
       {/* <FifthPopup />  */}
@@ -33,6 +33,7 @@ function App() {
       {/* <SeventhPopup /> */}
       {/* <EighthPopup/> */}
       {/* <Popup /> */}
+      {/* <ThirdPopup/>    */}
 
     </>
   );

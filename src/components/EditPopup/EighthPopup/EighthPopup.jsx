@@ -6,6 +6,7 @@ import ColorLine from "../../Images/colorlines.svg";
 import EmojiLast from "../../Images/EmojiLast.svg";
 
 function EighthPopup({ updatePage }) {
+  //on cancel of x it will redirect to zero/starting page
   const cancelHandler = () => {
     updatePage(0);
   };
@@ -18,6 +19,7 @@ function EighthPopup({ updatePage }) {
             x
           </button>
 
+          {/* Using the ProgressBar component to update progress of each popup */}
           <ProgressBar bgcolor={"#6257E4"} progress="100" />
 
           <div className={cls.progressText}>

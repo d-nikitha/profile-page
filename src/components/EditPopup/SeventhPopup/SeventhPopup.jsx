@@ -4,8 +4,9 @@ import GoBackLogo from "../../Images/GoBackLogo.svg";
 import { Formik, Form, useField, Field } from "formik";
 import * as Yup from "yup";
 import cls from "../SeventhPopup/SeventhPopup.module.css";
-import ResDownloadLogo from '../../Images/downloadResumeLogo.svg';
+import ResDownloadLogo from "../../Images/downloadResumeLogo.svg";
 
+// custom formik input to get validate by yup validation error or touched inputs.
 const MyTextInput = ({ label, ...props }) => {
   const [field, meta] = useField(props);
 
@@ -21,20 +22,20 @@ const MyTextInput = ({ label, ...props }) => {
 };
 
 function SeventhPopup({ updatePage }) {
-
   const [file, setSelectedFile] = useState({
     file: undefined,
     previewURI: undefined,
   });
 
+ //on cancel of x it will redirect to zero/starting page
   const cancelHandler = () => {
     updatePage(0);
   };
-
+//to move next page/popup
   const handleClick = () => {
     updatePage(8);
   };
-
+//to go back or jump into previous page
   const goBackHandler = () => {
     updatePage(6);
   };
@@ -45,18 +46,18 @@ function SeventhPopup({ updatePage }) {
         certificate: "",
         myfile: "",
       }}
+       //validations of all inputs
       validationSchema={Yup.object({
         certificate: Yup.string().required("*Add your certificate!"),
         myfile: Yup.mixed()
-        .test("fileSize", "File size too large, max file is 32mb", (file) =>
-          file ? file.size <= 32000000 : true
-        )
-        .test("fileType", "Incorrect file type", (file) =>
-          file ? ["application/pdf"].includes(file.type) : true
-        )
-        .required("Please upload the certificate"),
+          .test("fileSize", "File size too large, max file is 3.2mb", (file) =>
+            file ? file.size <= 3355433 : true
+          )
+          .test("fileType", "Incorrect file type", (file) =>
+            file ? ["application/pdf"].includes(file.type) : true
+          )
+          .required("Please upload the certificate"),
       })}
-
       onSubmit={(values, { setSubmitting }) => {
         setTimeout(() => {
           alert(JSON.stringify(values, null, 2));
@@ -71,6 +72,7 @@ function SeventhPopup({ updatePage }) {
             x
           </button>
 
+          {/* Using the ProgressBar component to update progress of each popup */}
           <ProgressBar bgcolor={"#6257E4"} progress="92" />
 
           <div className={cls.progressText}>
@@ -90,13 +92,13 @@ function SeventhPopup({ updatePage }) {
 
           <Form>
             <div className={cls.body}>
-                <div>
-                <MyTextInput 
-                name="certificate"
-                className={cls.certificateText}
-                placeholder={"Certificate name"}
+              <div>
+                <MyTextInput
+                  name="certificate"
+                  className={cls.certificateText}
+                  placeholder={"Certificate name"}
                 />
-                </div>
+              </div>
             </div>
 
             <div className={cls.upload}>
@@ -107,9 +109,11 @@ function SeventhPopup({ updatePage }) {
               />
               <div className={cls.uploadResumeText}>Upload Certificate</div>
               <div className={cls.pdfFileValue}>
-                PDF, Max file size is 32 MB
+                PDF, Max file size is 3.2 MB
               </div>
-              
+  
+             {/* condition of certificate pdf type */}
+
               <Field name="myfile">
                 {({ form, ...rest }) => {
                   return (
@@ -138,15 +142,13 @@ function SeventhPopup({ updatePage }) {
                       />
                       {form.errors.myfile && form.touched.myfile ? (
                         <div className={cls.errorText}>
-                          {JSON.stringify(form.errors.myfile, file)} 
+                          {JSON.stringify(form.errors.myfile, file)}
                         </div>
                       ) : null}
                     </>
                   );
                 }}
               </Field>
-
-
             </div>
 
             <div className={cls.breakline}></div>
@@ -160,7 +162,6 @@ function SeventhPopup({ updatePage }) {
                 Save & Next
               </button>
             </div>
-
           </Form>
         </div>
       </div>

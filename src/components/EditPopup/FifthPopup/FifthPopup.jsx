@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-import DatePicker from "react-datepicker";
+import React from "react";
 import "react-datepicker/dist/react-datepicker.css";
 import ProgressBar from "../../ProgressBar/ProgressBar";
 import GoBackLogo from "../../Images/GoBackLogo.svg";
@@ -8,6 +7,7 @@ import * as Yup from "yup";
 import SearchLogo from "../../Images/searchLogo.svg";
 import cls from "../FifthPopup/FifthPopup.module.css";
 
+// custom formik input to get validate by yup validation error or touched inputs.
 const MyTextInput = ({ label, ...props }) => {
   const [field, meta] = useField(props);
 
@@ -23,7 +23,8 @@ const MyTextInput = ({ label, ...props }) => {
   );
 };
 
-const MyTextarea = ({ label, ...props }) => {
+// custom formik textarea input to get validate by yup validation error or touched inputs.
+const MyTextArea = ({ label, ...props }) => {
   const [field, meta] = useField(props);
 
   return (
@@ -37,31 +38,35 @@ const MyTextarea = ({ label, ...props }) => {
   );
 };
 
-// const MyDatePicker =({ label, ...props }) => {
-//   const [field, meta] = useField(props);
-//   return (
-//     <>
-//       <label htmlFor={props.id || props.name}>{label}</label>
-//       <DatePicker {...field} {...props} type='' />
-//       {meta.touched && meta.error ? (
-//         <div className={cls.errorText}>{meta.error}</div>
-//       ) : null}
-//     </>
-//   );
+// custom formik date input to get validate by yup validation error or touched inputs.
 
-// }
+const MyDate = ({ label, ...props }) => {
+  const [field, meta] = useField(props);
+  return (
+    <>
+      <label htmlFor={props.id || props.name}>{label}</label>
+      <input {...field} {...props} type="date" />
+      {meta.touched && meta.error ? (
+        <div className={cls.errorTextMsg}>{meta.error}</div>
+      ) : null}
+    </>
+  );
+};
+
 
 function FifthPopup({ updatePage }) {
-  const [selectedDate, setSelectedDate] = useState(null);
-  const [endSelectedDate, setEndSelectedDate] = useState(null);
-
+   
+  //on cancel of x it will redirect to zero/starting page
   const cancelHandler = () => {
     updatePage(0);
   };
 
+  //to move next page/popup
   const handleClick = () => {
     updatePage(6);
   };
+
+  //to go back or jump into previous page
 
   const goBackHandler = () => {
     updatePage(4);
@@ -75,7 +80,10 @@ function FifthPopup({ updatePage }) {
         designation: "",
         industry: "",
         description: "",
+        startDate: "",
+        endDate: "",
       }}
+       //validations of all inputs
       validationSchema={Yup.object({
         company: Yup.string().required("*Company name!"),
         location: Yup.string().required("*Provide location adddress!"),
@@ -84,12 +92,28 @@ function FifthPopup({ updatePage }) {
         description: Yup.string().required(
           "*Please describe about your experience!"
         ),
+        startDate: Yup.date()
+        .required("*Select the start date")
+        .max(new Date(), "Start Date can't be more than current date")
+        .min(
+          new Date(new Date().setFullYear(new Date().getFullYear() - 120)),
+          "Min date"
+        ),
+        endDate: Yup.date()
+        .required("*Select the end date")
+        .min(Yup.ref("startDate"), "*End date can't be before start date.")
+        .notOneOf(
+          [Yup.ref("startDate"), null],
+          "End date should not be the same as the start date"
+        )
+        .max(new Date(), " End Date can't be more than current date"),
+
       })}
       onSubmit={(values, { setSubmitting }) => {
         setTimeout(() => {
           alert(JSON.stringify(values, null, 2));
           setSubmitting(false);
-          handleClick();
+          handleClick();//after clearance of all errors form will get submit/next page...
         }, 400);
       }}
     >
@@ -98,7 +122,7 @@ function FifthPopup({ updatePage }) {
           <button className={cls.titleCloseBtn} onClick={cancelHandler}>
             x
           </button>
-
+          {/* Using the ProgressBar component to update progress of each popup */}
           <ProgressBar bgcolor={"#6257E4"} progress="55" />
 
           <div className={cls.progressText}>
@@ -147,31 +171,18 @@ function FifthPopup({ updatePage }) {
 
             <div className={cls.bodyText}>
               <div>
-                <DatePicker
-                  name="startDate"
-                  selected={selectedDate}
+                 <MyDate
                   className={cls.startDateBtn}
-                  onChange={(date) => setSelectedDate(date)}
-                  placeholderText="Start Date"
-                  dateFormat="dd/MM/yyyy"
-                  showYearDropdown
-                  scrollableYearDropdown
-                  scrollableMonthYearDropdown
-                  required
+                  name="startDate"
+                  placeholder={"Start Date"}
                 />
               </div>
 
               <div>
-                <DatePicker
-                  selected={endSelectedDate}
+                 <MyDate
                   className={cls.endDateBtn}
-                  onChange={(date) => setEndSelectedDate(date)}
-                  placeholderText="End Date"
-                  dateFormat="dd/MM/yyyy"
-                  showYearDropdown
-                  scrollableYearDropdown
-                  scrollableMonthYearDropdown
-                  required
+                  name="endDate"
+                  placeholder="End Date"
                 />
               </div>
 
@@ -185,7 +196,7 @@ function FifthPopup({ updatePage }) {
             </div>
 
             <div>
-              <MyTextarea
+              <MyTextArea
                 name="description"
                 placeholder={"Description"}
                 className={cls.textAreaDesc}
@@ -201,7 +212,7 @@ function FifthPopup({ updatePage }) {
 
               <button className={cls.saveBtn} type="submit">
                 Save & Next
-              </button>          
+              </button>
             </div>
           </Form>
         </div>
